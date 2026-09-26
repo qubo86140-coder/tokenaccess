@@ -1,0 +1,15 @@
+{
+  "appId": "com.lokeii.tokenaccess",
+  "appName": "TokenAccess",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false,
+    "backgroundColor": "#0a0c10"
+  },
+  "plugins": {
+    "CapacitorCookies": { "enabled": true },
+    "CapacitorHttp": { "enabled": true }
+  }
+}
