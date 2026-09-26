@@ -1,0 +1,66 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install npm deps
+        run: npm install
+
+      - name: Capacitor add android
+        run: |
+          if [ ! -d "android" ]; then npx cap add android; fi
+          npx cap sync android
+
+      - name: Copy Frida scripts
+        run: |
+          mkdir -p android/app/src/main/assets/scripts
+          cp assets/scripts/*.js android/app/src/main/assets/scripts/ || true
+
+      - name: Restore AndroidManifest
+        run: |
+          if [ -f "custom/AndroidManifest.xml" ]; then
+            cp custom/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+          fi
+
+      - name: Restore Java files
+        run: |
+          if [ -d "custom/java" ]; then
+            mkdir -p android/app/src/main/java/com/lokeii/tokenaccess
+            cp custom/java/*.java android/app/src/main/java/com/lokeii/tokenaccess/
+          fi
+
+      - name: Build APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: TokenAccess-debug
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 7
