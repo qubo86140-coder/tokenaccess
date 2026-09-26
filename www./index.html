@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TokenAccess</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">T</div>
+    <h1>TokenAccess</h1>
+    <p class="sub">Root · Frida · Overlay · Токен</p>
+  </header>
+  <section class="panel">
+    <h2>1. Root & Magisk</h2>
+    <div class="row">
+      <button id="check-root" class="ghost">Проверить root</button>
+      <button id="check-magisk" class="ghost">Magisk модули</button>
+    </div>
+    <div id="root-status" class="status"></div>
+  </section>
+  <section class="panel">
+    <h2>2. Frida Server</h2>
+    <div class="row">
+      <button id="start-frida" class="primary">Запустить Frida</button>
+      <button id="stop-frida" class="ghost">Стоп</button>
+    </div>
+    <div id="frida-status" class="status"></div>
+  </section>
+  <section class="panel">
+    <h2>3. Overlay поверх игры</h2>
+    <div class="row">
+      <button id="overlay-on" class="primary">Включить</button>
+      <button id="overlay-off" class="ghost">Выключить</button>
+    </div>
+    <div id="overlay-status" class="status"></div>
+  </section>
+  <section class="panel">
+    <h2>4. Токен</h2>
+    <textarea id="token" rows="5" placeholder="access_token=...; refresh_token=..."></textarea>
+    <label class="field">
+      <span>Android ID</span>
+      <input id="android-id" type="text" placeholder="android_id">
+    </label>
+    <div class="row">
+      <button id="save-token" class="primary">Сохранить</button>
+      <button id="paste" class="ghost">Вставить</button>
+    </div>
+    <div class="row">
+      <button id="fetch-tokens" class="secondary">С сервера</button>
+      <button id="clear" class="ghost">Очистить</button>
+    </div>
+    <div id="token-status" class="status"></div>
+  </section>
+  <section class="panel">
+    <h2>5. Сохранённые</h2>
+    <div id="token-list" class="token-list"></div>
+  </section>
+  <section class="panel">
+    <h2>6. Кабинет PUBG</h2>
+    <div class="row">
+      <button id="open-main" class="primary">Кабинет</button>
+      <button id="open-link" class="secondary">Привязки</button>
+    </div>
+    <div class="row">
+      <button id="open-email" class="secondary">Почта</button>
+      <button id="open-pass" class="secondary">Пароль</button>
+    </div>
+  </section>
+  <section class="panel">
+    <h2>7. Frida-хук</h2>
+    <div class="row">
+      <button id="hook-bypass" class="primary">ACE bypass</button>
+      <button id="hook-spoof" class="secondary">Device spoof</button>
+    </div>
+    <div class="row">
+      <button id="hook-attach" class="primary">Хук в PUBG</button>
+      <button id="hook-detach" class="ghost">Отсоединить</button>
+    </div>
+    <div id="hook-status" class="status"></div>
+  </section>
+  <section class="panel">
+    <h2>8. Логи</h2>
+    <pre id="logs" class="logs"></pre>
+    <button id="clear-logs" class="ghost">Очистить</button>
+  </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
