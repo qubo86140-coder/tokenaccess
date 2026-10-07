@@ -2,11 +2,11 @@
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
   var logs = [];
-  var HOST = "accounts.pubgmobile.com";
-  var T_MAIN = "https://accounts.pubgmobile.com/";
-  var T_LINK = "https://accounts.pubgmobile.com/linked";
-  var T_EMAIL = "https://accounts.pubgmobile.com/email";
-  var T_PASS = "https://accounts.pubgmobile.com/password";
+  var HOST = "accounts.krafton.com";
+var T_MAIN = "https://accounts.krafton.com/";
+var T_LINK = "https://accounts.krafton.com/";
+var T_EMAIL = "https://accounts.krafton.com/";
+var T_PASS = "https://accounts.krafton.com/";
   var PUBG_PKG = "com.tencent.ig";
 
   function log(m) {
